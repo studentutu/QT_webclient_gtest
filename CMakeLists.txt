@@ -28,7 +28,7 @@ find_package(Qt5 COMPONENTS
         network
         REQUIRED)
 
-add_executable(qt_rest_communication_widget main.cpp 1_Concrete/IWindowApi.cpp 0_Abstract/IWindowApi.h)
+add_executable(qt_rest_communication_widget main.cpp 1_Concrete/IWindowApi.cpp 0_Abstract/IWindowApi.h 2_Utility/RestManager.cpp 2_Utility/RestManager.h)
 target_link_libraries(qt_rest_communication_widget
         Qt5::Core
         Qt5::Gui

@@ -1,12 +1,14 @@
 #include <QApplication>
 #include <QPushButton>
 #include "0_Abstract/IWindowApi.h"
+#include "2_Utility/RestManager.h"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkReply>
 #include <QObject>
 
 void sendRequest();
+void SendRequestWithRestApi();
 
 int main(int argc, char *argv[]) {
 
@@ -14,12 +16,19 @@ int main(int argc, char *argv[]) {
 
     actualWindow->CreateWindow(argc, argv);
     auto *button = new QPushButton("Hello world!", nullptr);
-    QObject::connect(button, &QPushButton::clicked, sendRequest);
+    QObject::connect(button, &QPushButton::clicked, SendRequestWithRestApi);
     button->resize(200, 100);
     button->show();
 
 
     return QApplication::exec();
+}
+
+void SendRequestWithRestApi()
+{
+    auto* restClient = new RestManager();
+    restClient->GET("http://api.weatherapi.com/v1/current.json?key=102159d41c644319a60173651212512&q=London&aqi=no");
+
 }
 
 void sendRequest() {
